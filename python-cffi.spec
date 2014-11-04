@@ -87,7 +87,7 @@ popd
 %{python_sitearch}/*.so
 
 
-%files -n python3-%{pypi_name}
+%files -n python2-%{pypi_name}
 %{python2_sitearch}/%{pypi_name}
 %{python2_sitearch}/%{pypi_name}-%{version}-py?.?.egg-info
 %{python2_sitearch}/*.so
