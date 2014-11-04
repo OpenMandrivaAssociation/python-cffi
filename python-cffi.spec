@@ -56,16 +56,16 @@ Documentation for CFFI, the Foreign Function Interface for Python.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
-cp -a . %{py3dir}
-find %{py3dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python3}|'
+cp -a . %{py2dir}
+find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 
 %build
-pushd %{py3dir}
-CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
+pushd %{py2dir}
+CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build
 popd
 
-CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build
+CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
 pushd doc
 make html
 rm build/html/.buildinfo
@@ -74,11 +74,11 @@ popd
 
 
 %install
-pushd %{py3dir}
-%{__python} setup.py install --skip-build --root %{buildroot}
+pushd %{py2dir}
+%{__python2} setup.py install --skip-build --root %{buildroot}
 popd
 
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%{__python} setup.py install --skip-build --root %{buildroot}
 
 
 %files
