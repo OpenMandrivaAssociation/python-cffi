@@ -19,12 +19,12 @@ BuildRequires:  ffi-devel
 BuildRequires:  pkgconfig(python2)
 BuildRequires:  python2-setuptools
 BuildRequires:  python2-cython
-BuildRequires:  python2-pycparser
+BuildRequires:  python2-cparser
  
 BuildRequires:  pkgconfig(python3)
 BuildRequires:  python-setuptools
 BuildRequires:  python-cython
-BuildRequires:  python-pycparser
+BuildRequires:  python-cparser
  
 
 %description
