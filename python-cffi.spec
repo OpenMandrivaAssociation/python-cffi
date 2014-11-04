@@ -59,10 +59,10 @@ find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 %build
 pushd %{py2dir}
-CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build
+CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build build_ext -ldl
 popd
 
-CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
+CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build build_ext -ldl
 pushd doc
 make html
 rm build/html/.buildinfo
