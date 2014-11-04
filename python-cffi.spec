@@ -1,7 +1,4 @@
 %define pypi_name cffi
-# we don't want to provide private python extension libs
-%define _exclude_files_from_autoprov %{python_sitearch}/.*\\.so\\|%{python3_sitearch}/.*\\.so
-%define py3dir py3
 
 Name:           python-%{pypi_name}
 Version:        0.8.6
