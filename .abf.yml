@@ -1,4 +1,2 @@
-removed_sources:
-  cffi-0.8.6.tar.gz: 4e82390201e6f30e9df8a91cd176df19b8f2d547
 sources:
-  cffi-1.4.2.tar.gz: 76cff6f1ff5bfb2b9c6c8e2cfa8bf90b5c944394
+  cffi-1.5.2.tar.gz: 5239b3aa4f67eed3559c09778096ecd4faeca876

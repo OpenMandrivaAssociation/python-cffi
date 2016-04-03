@@ -1,7 +1,7 @@
 %define pypi_name cffi
 
 Name:           python-%{pypi_name}
-Version:        1.4.2
+Version:        1.5.2
 Release:        1
 Group:          Development/Python
 Summary:        Foreign Function Interface for Python calling C code
@@ -59,16 +59,14 @@ find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 %build
 pushd %{py2dir}
-CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build build_ext -ldl
+CFLAGS="%{optflags}" %{__python2} setup.py build build_ext -ldl
 popd
 
-CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build build_ext -ldl
+CFLAGS="%{optflags}" %{__python} setup.py build build_ext -ldl
 pushd doc
 make html
 rm build/html/.buildinfo
 popd
-
-
 
 %install
 pushd %{py2dir}
@@ -77,12 +75,10 @@ popd
 
 %{__python} setup.py install --skip-build --root %{buildroot}
 
-
 %files
 %{python_sitearch}/%{pypi_name}
 %{python_sitearch}/%{pypi_name}-%{version}-py?.?.egg-info
 %{python_sitearch}/*.so
-
 
 %files -n python2-%{pypi_name}
 %{python2_sitearch}/%{pypi_name}
@@ -91,5 +87,3 @@ popd
 
 %files doc
 %doc doc/build/html
-
-
