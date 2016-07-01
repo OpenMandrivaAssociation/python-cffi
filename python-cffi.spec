@@ -58,6 +58,11 @@ find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 
 %build
+%ifarch %{ix86}
+export CC=gcc
+export CXX=g++
+%endif
+
 pushd %{py2dir}
 CFLAGS="%{optflags}" %{__python2} setup.py build build_ext -ldl
 popd
