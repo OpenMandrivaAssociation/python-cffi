@@ -1,14 +1,14 @@
 %define pypi_name cffi
 
 Name:           python-%{pypi_name}
-Version:        1.10.0
-Release:        2
+Version:        1.11.4
+Release:        1
 Group:          Development/Python
 Summary:        Foreign Function Interface for Python calling C code
 
 License:        MIT
 URL:            http://cffi.readthedocs.org/
-Source0:        https://pypi.python.org/packages/83/3c/00b553fd05ae32f27b3637f705c413c4ce71290aa9b4c4764df694e906d9/cffi-%{version}.tar.gz
+Source0:        https://pypi.python.org/packages/10/f7/3b302ff34045f25065091d40e074479d6893882faef135c96f181a57ed06/cffi-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc 
 BuildRequires:  python-sphinx
 BuildRequires:  ffi-devel
