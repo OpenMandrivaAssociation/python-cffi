@@ -1,4 +1,5 @@
 %define pypi_name cffi
+%define _disable_lto 1
 
 Name:           python-%{pypi_name}
 Version:        1.11.5
@@ -33,7 +34,6 @@ The interface is based on LuaJIT’s FFI
 %package -n     python2-%{pypi_name}
 Summary:        Foreign Function Interface for Python calling C code
  
-
 %description -n python2-%{pypi_name}
 Foreign Function Interface for Python 3 calling C code.
 The aim of this project is to provide a convenient and 
@@ -55,7 +55,6 @@ rm -rf %{pypi_name}.egg-info
 
 cp -a . %{py2dir}
 find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
-
 
 %build
 pushd %{py2dir}
