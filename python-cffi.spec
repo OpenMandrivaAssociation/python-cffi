@@ -1,7 +1,7 @@
 %define pypi_name cffi
 
 Name:           python-%{pypi_name}
-Version:        1.11.4
+Version:        1.11.5
 Release:        1
 Group:          Development/Python
 Summary:        Foreign Function Interface for Python calling C code
