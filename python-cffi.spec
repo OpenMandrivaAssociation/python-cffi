@@ -1,5 +1,9 @@
 %define pypi_name cffi
 %define _disable_lto 1
+%define _disable_ld_as_needed 1
+
+# we don't want to provide private python extension libs
+%define _exclude_files_from_autoprov %{python2_sitearch}/.*\\.so\\|%{python3_sitearch}/.*\\.so
 
 Name:           python-%{pypi_name}
 Version:        1.11.5
@@ -58,10 +62,12 @@ find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 %build
 pushd %{py2dir}
-CFLAGS="%{optflags}" %{__python2} setup.py build build_ext -ldl
+CFLAGS="%{optflags}" %{__python2} setup.py build build_ext --libraries="dl"
+CFLAGS="%{optflags}" %{__python2} setup.py build
 popd
 
-CFLAGS="%{optflags}" %{__python} setup.py build build_ext -ldl
+CFLAGS="%{optflags}" %{__python} setup.py build build_ext --libraries="dl"
+CFLAGS="%{optflags}" %{__python} setup.py build
 pushd doc
 make html
 rm build/html/.buildinfo
