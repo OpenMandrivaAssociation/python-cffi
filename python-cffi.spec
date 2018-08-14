@@ -15,6 +15,7 @@ License:	MIT
 URL:		http://cffi.readthedocs.org/
 Source0:	https://pypi.python.org/packages/10/f7/3b302ff34045f25065091d40e074479d6893882faef135c96f181a57ed06/cffi-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
+
 BuildRequires:	python-sphinx
 BuildRequires:	pkgconfig(libffi)
 
@@ -55,6 +56,8 @@ Documentation for CFFI, the Foreign Function Interface for Python.
 
 %prep
 %setup -q -n %{pypi_name}-%{version}
+%autopatch -p1
+
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
@@ -66,11 +69,9 @@ export CC=gcc
 export CXX=g++
 
 pushd %{py2dir}
-CFLAGS="%{optflags}" %{__python2} setup.py build build_ext --libraries="dl"
 CFLAGS="%{optflags}" %{__python2} setup.py build
 popd
 
-CFLAGS="%{optflags}" %{__python} setup.py build build_ext --libraries="dl"
 CFLAGS="%{optflags}" %{__python} setup.py build
 
 pushd doc
