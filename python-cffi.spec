@@ -3,11 +3,11 @@
 %define _disable_ld_as_needed 1
 
 # we don't want to provide private python extension libs
-%define _exclude_files_from_autoprov %{python2_sitearch}/.*\\.so\\|%{python3_sitearch}/.*\\.so
+%global __provides_exclude_from ^(%{python2_sitearch}|%{python_sitearch})/.*\\.so$
 
 Name:		python-%{pypi_name}
 Version:	1.11.5
-Release:	1
+Release:	2
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 
@@ -16,7 +16,7 @@ URL:		http://cffi.readthedocs.org/
 Source0:	https://pypi.python.org/packages/10/f7/3b302ff34045f25065091d40e074479d6893882faef135c96f181a57ed06/cffi-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 BuildRequires:	python-sphinx
-BuildRequires:	ffi-devel
+BuildRequires:	pkgconfig(libffi)
 
 BuildRequires:	pkgconfig(python2)
 BuildRequires:	python2-setuptools
