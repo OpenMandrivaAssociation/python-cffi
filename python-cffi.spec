@@ -16,6 +16,8 @@ URL:		http://cffi.readthedocs.org/
 Source0:	https://pypi.python.org/packages/10/f7/3b302ff34045f25065091d40e074479d6893882faef135c96f181a57ed06/cffi-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 
+Patch0:		cffi-1.11.5-link-libdl.patch
+
 BuildRequires:	python-sphinx
 BuildRequires:	pkgconfig(libffi)
 
@@ -55,8 +57,7 @@ BuildArch:	noarch
 Documentation for CFFI, the Foreign Function Interface for Python.
 
 %prep
-%setup -q -n %{pypi_name}-%{version}
-%autopatch -p1
+%autosetup -p1 -n %{pypi_name}-%{version}
 
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
@@ -65,14 +66,14 @@ cp -a . %{py2dir}
 find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
 
 %build
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 
 pushd %{py2dir}
-CFLAGS="%{optflags}" %{__python2} setup.py build
+CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python2} setup.py build
 popd
 
-CFLAGS="%{optflags}" %{__python} setup.py build
+CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python} setup.py build
 
 pushd doc
 make html
@@ -81,10 +82,10 @@ popd
 
 %install
 pushd %{py2dir}
-%{__python2} setup.py install --skip-build --root %{buildroot}
+CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python2} setup.py install --skip-build --root %{buildroot}
 popd
 
-%{__python} setup.py install --skip-build --root %{buildroot}
+CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python} setup.py install --skip-build --root %{buildroot}
 
 %files
 %{python_sitearch}/%{pypi_name}
