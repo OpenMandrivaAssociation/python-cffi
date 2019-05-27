@@ -6,8 +6,8 @@
 %global __provides_exclude_from ^(%{python2_sitearch}|%{python_sitearch})/.*\\.so$
 
 Name:		python-%{pypi_name}
-Version:	1.11.5
-Release:	3
+Version:	1.12.3
+Release:	1
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 
@@ -75,11 +75,10 @@ popd
 
 CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python} setup.py build
 
-pushd doc
+cd doc
 make html
 rm build/html/.buildinfo
-popd
-
+cd -
 %install
 pushd %{py2dir}
 CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python2} setup.py install --skip-build --root %{buildroot}
