@@ -6,14 +6,14 @@
 %global __provides_exclude_from ^(%{python2_sitearch}|%{python_sitearch})/.*\\.so$
 
 Name:		python-%{pypi_name}
-Version:	1.12.3
+Version:	1.13.0
 Release:	1
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 
 License:	MIT
 URL:		http://cffi.readthedocs.org/
-Source0:	https://pypi.python.org/packages/10/f7/3b302ff34045f25065091d40e074479d6893882faef135c96f181a57ed06/cffi-%{version}.tar.gz
+Source0:	https://files.pythonhosted.org/packages/d6/cf/ba7e2df852a2fc807d48b3f7bea46f741830be4f047a0712e6de3e95fb6a/cffi-1.13.0.tar.gz
 Source100:	%{name}.rpmlintrc
 
 Patch0:		cffi-1.11.5-link-libdl.patch
