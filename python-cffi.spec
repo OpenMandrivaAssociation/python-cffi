@@ -7,7 +7,7 @@
 
 Name:		python-%{pypi_name}
 Version:	1.13.2
-Release:	2
+Release:	3
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 
