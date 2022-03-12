@@ -7,27 +7,17 @@
 
 Name:		python-%{pypi_name}
 Version:	1.14.4
-Release:	1
+Release:	2
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
-
 License:	MIT
 URL:		http://cffi.readthedocs.org/
 Source0:	https://files.pythonhosted.org/packages/66/6a/98e023b3d11537a5521902ac6b50db470c826c682be6a8c661549cb7717a/cffi-1.14.4.tar.gz
 Source100:	%{name}.rpmlintrc
-
 Patch0:		cffi-1.11.5-link-libdl.patch
-
 BuildRequires:	python-sphinx
 BuildRequires:	pkgconfig(libffi)
-
-BuildRequires:	pkgconfig(python2)
-BuildRequires:	python2-setuptools
-BuildRequires:	python2-pkg-resources
-#BuildRequires:	python2-cython
-BuildRequires:	python2-cparser
-
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	python-setuptools
 BuildRequires:	python-pkg-resources
 BuildRequires:	python-cython
@@ -37,15 +27,6 @@ BuildRequires:	python-cparser
 Foreign Function Interface for Python calling C code.
 The aim of this project is to provide a convenient and 
 reliable way of calling C code from Python. 
-The interface is based on LuaJIT’s FFI 
-
-%package -n python2-%{pypi_name}
-Summary:	Foreign Function Interface for Python calling C code
-
-%description -n python2-%{pypi_name}
-Foreign Function Interface for Python 3 calling C code.
-The aim of this project is to provide a convenient and 
-reliable way of calling C code from Python 3. 
 The interface is based on LuaJIT’s FFI 
 
 %package doc
@@ -62,39 +43,22 @@ Documentation for CFFI, the Foreign Function Interface for Python.
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
-cp -a . %{py2dir}
-find %{py2dir} -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python2}|'
-
 %build
-#export CC=gcc
-#export CXX=g++
-
-pushd %{py2dir}
-CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python2} setup.py build
-popd
-
-CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python} setup.py build
+%set_build_flags
+%py_build
 
 cd doc
 make html
 rm build/html/.buildinfo
 cd -
-%install
-pushd %{py2dir}
-CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python2} setup.py install --skip-build --root %{buildroot}
-popd
 
-CFLAGS="%{optflags}" LDFLAGS="%{optflags}" %{__python} setup.py install --skip-build --root %{buildroot}
+%install
+%py_install
 
 %files
 %{python_sitearch}/%{pypi_name}
-%{python_sitearch}/%{pypi_name}-%{version}-py?.?.egg-info
+%{python_sitearch}/%{pypi_name}-%{version}-py*.egg-info
 %{python_sitearch}/*.so
-
-%files -n python2-%{pypi_name}
-%{python2_sitearch}/%{pypi_name}
-%{python2_sitearch}/%{pypi_name}-%{version}-py?.?.egg-info
-%{python2_sitearch}/*.so
 
 %files doc
 %doc doc/build/html
