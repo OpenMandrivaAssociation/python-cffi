@@ -3,18 +3,18 @@
 %define _disable_ld_as_needed 1
 
 # we don't want to provide private python extension libs
-%global __provides_exclude_from ^(%{python2_sitearch}|%{python_sitearch})/.*\\.so$
+%global __provides_exclude_from ^%{python_sitearch}/.*\\.so$
 
 Name:		python-%{pypi_name}
-Version:	1.14.4
-Release:	2
+Version:	1.15.0
+Release:	1
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 License:	MIT
 URL:		http://cffi.readthedocs.org/
-Source0:	https://files.pythonhosted.org/packages/66/6a/98e023b3d11537a5521902ac6b50db470c826c682be6a8c661549cb7717a/cffi-1.14.4.tar.gz
+Source0:	https://files.pythonhosted.org/packages/66/6a/98e023b3d11537a5521902ac6b50db470c826c682be6a8c661549cb7717a/%{pypi_name}-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
-Patch0:		cffi-1.11.5-link-libdl.patch
+Patch0:		cffi-1.12.3-linking.patch
 BuildRequires:	python-sphinx
 BuildRequires:	pkgconfig(libffi)
 BuildRequires:	pkgconfig(python)
@@ -44,7 +44,6 @@ Documentation for CFFI, the Foreign Function Interface for Python.
 rm -rf %{pypi_name}.egg-info
 
 %build
-%set_build_flags
 %py_build
 
 cd doc
