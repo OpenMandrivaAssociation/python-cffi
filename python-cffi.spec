@@ -12,7 +12,7 @@ Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 License:	MIT
 URL:		http://cffi.readthedocs.org/
-Source0:	https://files.pythonhosted.org/packages/66/6a/98e023b3d11537a5521902ac6b50db470c826c682be6a8c661549cb7717a/%{pypi_name}-%{version}.tar.gz
+Source0:	https://files.pythonhosted.org/packages/source/c/cffi/%{pypi_name}-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
 Patch0:		cffi-1.12.3-linking.patch
 BuildRequires:	python-sphinx
