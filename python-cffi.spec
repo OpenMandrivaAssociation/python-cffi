@@ -1,13 +1,12 @@
 %define pypi_name cffi
-%define _disable_lto 1
-%define _disable_ld_as_needed 1
+%bcond_without test
 
 # we don't want to provide private python extension libs
 %global __provides_exclude_from ^%{python_sitearch}/.*\\.so$
 
 Name:		python-%{pypi_name}
 Version:	1.15.0
-Release:	1
+Release:	2
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 License:	MIT
@@ -22,6 +21,10 @@ BuildRequires:	python-setuptools
 BuildRequires:	python-pkg-resources
 BuildRequires:	python-cython
 BuildRequires:	python-cparser
+%if %{with test}
+BuildRequires:	python3dist(py)
+BuildRequires:	python3dist(pytest)
+%endif
 
 %description
 Foreign Function Interface for Python calling C code.
@@ -53,6 +56,11 @@ cd -
 
 %install
 %py_install
+
+%if %{with test}
+%check
+python setup.py test
+%endif
 
 %files
 %{python_sitearch}/%{pypi_name}
