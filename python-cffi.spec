@@ -6,7 +6,7 @@
 
 Name:		python-%{pypi_name}
 Version:	1.15.0
-Release:	2
+Release:	3
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 License:	MIT
