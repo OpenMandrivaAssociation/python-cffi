@@ -5,15 +5,14 @@
 %global __provides_exclude_from ^%{python_sitearch}/.*\\.so$
 
 Name:		python-%{pypi_name}
-Version:	1.15.0
-Release:	3
+Version:	1.16.0
+Release:	1
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 License:	MIT
 URL:		http://cffi.readthedocs.org/
 Source0:	https://files.pythonhosted.org/packages/source/c/cffi/%{pypi_name}-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
-Patch0:		cffi-1.12.3-linking.patch
 BuildRequires:	python-sphinx
 BuildRequires:	pkgconfig(libffi)
 BuildRequires:	pkgconfig(python)
@@ -22,8 +21,8 @@ BuildRequires:	python-pkg-resources
 BuildRequires:	python-cython
 BuildRequires:	python-cparser
 %if %{with test}
-BuildRequires:	python3dist(py)
-BuildRequires:	python3dist(pytest)
+BuildRequires:	python%{pyver}dist(py)
+BuildRequires:	python%{pyver}dist(pytest)
 %endif
 
 %description
@@ -64,7 +63,7 @@ python setup.py test
 
 %files
 %{python_sitearch}/%{pypi_name}
-%{python_sitearch}/%{pypi_name}-%{version}-py*.egg-info
+%{python_sitearch}/%{pypi_name}-%{version}*.*-info
 %{python_sitearch}/*.so
 
 %files doc
