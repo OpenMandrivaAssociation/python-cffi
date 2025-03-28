@@ -1,5 +1,5 @@
 %define pypi_name cffi
-%bcond_without test
+%bcond_with test
 
 # we don't want to provide private python extension libs
 %global __provides_exclude_from ^%{python_sitearch}/.*\\.so$
