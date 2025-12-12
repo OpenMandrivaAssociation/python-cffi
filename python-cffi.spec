@@ -20,6 +20,7 @@ BuildRequires:	python-setuptools
 BuildRequires:	python-pkg-resources
 BuildRequires:	python-cython
 BuildRequires:	python-cparser
+BuildRequires:	python%{pyver}dist(pip)
 %if %{with test}
 BuildRequires:	python%{pyver}dist(py)
 BuildRequires:	python%{pyver}dist(pytest)
