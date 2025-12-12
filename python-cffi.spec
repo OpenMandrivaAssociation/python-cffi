@@ -13,6 +13,8 @@ License:	MIT
 URL:		https://cffi.readthedocs.org/
 Source0:	https://files.pythonhosted.org/packages/source/c/cffi/%{pypi_name}-%{version}.tar.gz
 Source100:	%{name}.rpmlintrc
+
+BuildRequires:	make
 BuildRequires:	python-sphinx
 BuildRequires:	pkgconfig(libffi)
 BuildRequires:	pkgconfig(python)
