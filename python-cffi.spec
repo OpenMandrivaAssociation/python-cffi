@@ -6,7 +6,7 @@
 
 Name:		python-%{pypi_name}
 Version:	2.0.0
-Release:	2
+Release:	3
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 License:	MIT
@@ -21,7 +21,7 @@ BuildRequires:	pkgconfig(python)
 BuildRequires:	python-setuptools
 BuildRequires:	python-pkg-resources
 BuildRequires:	python-cython
-BuildRequires:	python-cparser
+BuildRequires:  python%{pyver}dist(pycparser)
 BuildRequires:	python%{pyver}dist(pip)
 %if %{with test}
 BuildRequires:	python%{pyver}dist(py)
