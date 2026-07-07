@@ -5,8 +5,8 @@
 %global __provides_exclude_from ^%{python_sitearch}/.*\\.so$
 
 Name:		python-%{pypi_name}
-Version:	2.0.0
-Release:	3
+Version:	2.1.0
+Release:	1
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
 License:	MIT
@@ -15,12 +15,12 @@ Source0:	https://files.pythonhosted.org/packages/source/c/cffi/%{pypi_name}-%{ve
 Source100:	%{name}.rpmlintrc
 
 BuildRequires:	make
-BuildRequires:	python-sphinx
+BuildRequires:	python%{pyver}dist(sphinx)
 BuildRequires:	pkgconfig(libffi)
 BuildRequires:	pkgconfig(python)
-BuildRequires:	python-setuptools
+BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	python-pkg-resources
-BuildRequires:	python-cython
+BuildRequires:	python%{pyver}dist(cython)
 BuildRequires:  python%{pyver}dist(pycparser)
 BuildRequires:	python%{pyver}dist(pip)
 %if %{with test}
@@ -65,6 +65,7 @@ python setup.py test
 %endif
 
 %files
+%{_bindir}/%{pypi_name}-gen-src
 %{python_sitearch}/%{pypi_name}
 %{python_sitearch}/%{pypi_name}-%{version}*.*-info
 %{python_sitearch}/*.so
