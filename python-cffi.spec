@@ -5,7 +5,7 @@
 %global __provides_exclude_from ^%{python_sitearch}/.*\\.so$
 
 Name:		python-%{pypi_name}
-Version:	2.1.0
+Version:	2.1.1
 Release:	1
 Group:		Development/Python
 Summary:	Foreign Function Interface for Python calling C code
